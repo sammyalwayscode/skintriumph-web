@@ -9,7 +9,7 @@ const Stocklist = () => {
 
   const getStock = async () => {
     const mainURL = "http://localhost:2221";
-    const liveURL = "https://sktriumph-app.vercel.app";
+    const liveURL = "https://skintriumph-server.herokuapp.com";
     const URL = `${liveURL}/api/stocklist/`;
 
     await axios
@@ -32,6 +32,19 @@ const Stocklist = () => {
   useEffect(() => {
     getStock();
   }, []);
+
+  const [storeDelete, setStoreDelete] = useState([]);
+
+  const deleteStocklist = async (id) => {
+    const mainURL = "http://localhost:2221";
+    const liveURL = "https://skintriumph-server.herokuapp.com";
+    const URL = `${liveURL}/api/stocklist//remove/${id}`;
+
+    await axios.delete(URL);
+    const file = [...storeDelete];
+    file.filter((e) => e.id !== id);
+    setStoreDelete(file);
+  };
 
   return (
     <Container>
@@ -62,6 +75,36 @@ const Stocklist = () => {
                 <p>Tel: {props.phoneNo} </p>
                 <p>Email: {props.email} </p>
                 <p>Hours: {props.hours} </p>
+                <NavLink to={`/boardstocklist/update/${props._id}`}>
+                  <button>Update store</button>
+                </NavLink>
+                <button
+                  style={{
+                    backgroundColor: "red",
+                  }}
+                  onClick={() => {
+                    Swal.fire({
+                      title: "Are you sure?",
+                      text: "You won't be able to revert this!",
+                      icon: "warning",
+                      showCancelButton: true,
+                      confirmButtonColor: "#3085d6",
+                      cancelButtonColor: "#d33",
+                      confirmButtonText: "Yes, delete it!",
+                    }).then((result) => {
+                      if (result.isConfirmed) {
+                        deleteStocklist(props._id);
+                        Swal.fire(
+                          "Deleted!",
+                          "Your file has been deleted.",
+                          "success"
+                        );
+                      }
+                    });
+                  }}
+                >
+                  Delete store
+                </button>
               </ContentHold2>
             ))}
           </OtherStores>
@@ -110,14 +153,14 @@ const Wrapper = styled.div`
     font-weight: 600;
     border-radius: 2px;
     transition: all 350ms;
-    /* margin: 20px 0; */
+    margin: 3px 5px;
     font-size: 12px;
     text-decoration: none;
     padding: 4px 17px;
 
     :hover {
       transform: scale(0.94);
-      color: #e8bf0a;
+      /* color: #e8bf0a; */
     }
   }
   @media (max-width: 1150px) {

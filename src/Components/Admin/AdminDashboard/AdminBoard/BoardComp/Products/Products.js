@@ -3,13 +3,14 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import Swal from "sweetalert2";
+import formatter from "number-to-currency";
 
 const Products = () => {
   const [fecthProduct, setFecthProduct] = useState([]);
 
   const getProducts = async () => {
     const mainURL = "http://localhost:2221";
-    const liveURL = "https://sktriumph-app.vercel.app";
+    const liveURL = "https://skintriumph-server.herokuapp.com";
     const URL = `${liveURL}/api/product/`;
 
     await axios
@@ -54,7 +55,7 @@ const Products = () => {
                   </NavLink>
                   <Price>
                     {" "}
-                    <span>&#8358;</span> {props.price}
+                    <span>&#8358;</span> {formatter(props.price)}
                   </Price>
                 </Butons>
                 <ShortDescrib>

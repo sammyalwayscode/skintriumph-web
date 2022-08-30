@@ -50,7 +50,7 @@ const Orders = () => {
 
   const fecthOrder = async () => {
     const mainURL = "http://localhost:2221";
-    const liveURL = "https://sktriumph-app.vercel.app";
+    const liveURL = "https://skintriumph-server.herokuapp.com";
     const URL = `${liveURL}/api/order/`;
 
     await axios.get(URL).then((res) => {
@@ -120,7 +120,8 @@ const Orders = () => {
                         onClick={() => {
                           const updateDelivery = async () => {
                             const mainURL = "http://localhost:2221";
-                            const liveURL = "https://sktriumph-app.vercel.app";
+                            const liveURL =
+                              "https://skintriumph-server.herokuapp.com";
                             const URL = `${liveURL}/api/order/delivered/${row._id}`;
                             axios.patch(URL);
                           };

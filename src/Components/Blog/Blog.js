@@ -13,7 +13,7 @@ const Blog = () => {
   const getAllBlogs = async () => {
     const mainURL = "http://localhost:2221";
     const liveURL = "https://sktriumph-app.vercel.app";
-    const URL = `${liveURL}/api/blog`;
+    const URL = `${mainURL}/api/blog`;
 
     await axios
       .get(URL)

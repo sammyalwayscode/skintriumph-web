@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Blog from "../BoardComp/Blog/Blog";
 import BoardDetailBlog from "../BoardComp/Blog/BoardDetailBlog";
 import CreateBlog from "../BoardComp/Blog/CreateBlog";
+import UpdateBlog from "../BoardComp/Blog/UpdateBlog";
 import Customers from "../BoardComp/Customers/Customers";
 import OrderDetail from "../BoardComp/Orders/OrderDetail";
 import Orders from "../BoardComp/Orders/Orders";
@@ -15,6 +16,7 @@ import UpdateProduct from "../BoardComp/Products/UpdateProduct";
 import ProductUpload from "../BoardComp/ProductsUpload/ProductUpload";
 import NewStoreModal from "../BoardComp/Stocklist/NewStoreModal";
 import Stocklist from "../BoardComp/Stocklist/Stocklist";
+import UpdateStocklist from "../BoardComp/Stocklist/UpdateStocklist";
 import Board from "../BoardHold/Board";
 
 const AdminRoute = () => {
@@ -41,11 +43,16 @@ const AdminRoute = () => {
             <Route path="/orders/orderdetail/:id" element={<OrderDetail />} />
             <Route path="/boardblogs" element={<Blog />} />
             <Route path="/boardblogs/newblog" element={<CreateBlog />} />
+            <Route path="/boardblogs/updateblog/:id" element={<UpdateBlog />} />
             <Route
               path="/boardblogs/detail/:id"
               element={<BoardDetailBlog />}
             />
             <Route path="/boardstocklist" element={<Stocklist />} />
+            <Route
+              path="/boardstocklist/update/:id"
+              element={<UpdateStocklist />}
+            />
             <Route
               path="/boardstocklist/newstore"
               element={<NewStoreModal />}

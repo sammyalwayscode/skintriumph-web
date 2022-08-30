@@ -11,7 +11,9 @@ const Home5 = () => {
           who share our values. To become a Nokware stockist, please click to
           fill the stockist partnership form.
         </Content>
-        <Button>Fill The Form</Button>
+        <a href="https://surveyheart.com/form/630e281f4916e576cb600e7d">
+          <Button>Fill The Form</Button>
+        </a>
       </Wrapper>
     </Container>
   );

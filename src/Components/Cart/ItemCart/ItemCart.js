@@ -17,7 +17,7 @@ const ItemCart = () => {
     <Container>
       <Hero>
         {" "}
-        <Cc>Hear's Your Cart</Cc>{" "}
+        <Cc>Here's Your Cart</Cc>{" "}
       </Hero>
       <Wrapper>
         {getCart?.map((props) => (
@@ -54,7 +54,7 @@ const ItemCart = () => {
               </QuantityDiv>
               <ItemTotalPriceDiv>
                 {" "}
-                <span>&#8358;</span> {props.price * props.qty}
+                <span>&#8358;</span> {formatter(props.price * props.qty)}
               </ItemTotalPriceDiv>
               <DeleteIcon />
             </ShopingCartHold>

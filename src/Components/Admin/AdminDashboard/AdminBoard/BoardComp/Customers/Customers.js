@@ -8,6 +8,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import styledComponents from "styled-components";
+import axios from "axios";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -42,6 +43,23 @@ const rows = [
 ];
 
 const Customers = () => {
+  const [allCoustomers, setAllCoustomers] = React.useState([]);
+
+  const getCoustomers = async () => {
+    const mainURL = "http://localhost:2221";
+    const liveURL = "https://skintriumph-server.herokuapp.com";
+    const URL = `${liveURL}/api/order/`;
+
+    await axios.get(URL).then((res) => {
+      console.log(res.data.data);
+      setAllCoustomers(res.data.data);
+    });
+  };
+
+  React.useEffect(() => {
+    getCoustomers();
+  }, []);
+
   return (
     <Container>
       <Wrapper>
@@ -50,27 +68,43 @@ const Customers = () => {
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
               <TableRow>
-                <StyledTableCell>Dessert (100g serving)</StyledTableCell>
-                <StyledTableCell align="right">Calories</StyledTableCell>
-                <StyledTableCell align="right">Fat&nbsp;(g)</StyledTableCell>
-                <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell>
-                <StyledTableCell align="right">
-                  Protein&nbsp;(g)
-                </StyledTableCell>
+                <StyledTableCell>...</StyledTableCell>
+                <StyledTableCell>Customer Name</StyledTableCell>
+                <StyledTableCell align="right">Email</StyledTableCell>
+                <StyledTableCell align="right">State</StyledTableCell>
+                <StyledTableCell align="right">Phone No</StyledTableCell>
+                <StyledTableCell align="right">L.G.A</StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row) => (
-                <StyledTableRow key={row.name}>
+              {allCoustomers?.map((row) => (
+                <StyledTableRow key={row._id}>
                   <StyledTableCell component="th" scope="row">
-                    {row.name}
+                    <AvatarName>
+                      <strong>
+                        {" "}
+                        {row.orderDetail.map((props) =>
+                          props.username.charAt()
+                        )}{" "}
+                      </strong>
+                    </AvatarName>
+                  </StyledTableCell>
+                  <StyledTableCell component="th" scope="row">
+                    {row.orderDetail.map((props) => props.username)}
                   </StyledTableCell>
                   <StyledTableCell align="right">
-                    {row.calories}
+                    {" "}
+                    {row.orderDetail.map((props) => props.email)}
                   </StyledTableCell>
-                  <StyledTableCell align="right">{row.fat}</StyledTableCell>
-                  <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-                  <StyledTableCell align="right">{row.protein}</StyledTableCell>
+                  <StyledTableCell align="right">
+                    {row.orderDetail.map((props) => props.state)}
+                  </StyledTableCell>
+                  <StyledTableCell align="right">
+                    {row.orderDetail.map((props) => props.phone)}
+                  </StyledTableCell>
+                  <StyledTableCell align="right">
+                    {row.orderDetail.map((props) => props.LGA)}
+                  </StyledTableCell>
                 </StyledTableRow>
               ))}
             </TableBody>
@@ -108,5 +142,23 @@ const Wrapper = styledComponents.div`
   width: 1150px;
   @media (max-width: 1150px) {
     width: 95%;
+  }
+`;
+
+const AvatarName = styledComponents.div`
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background-color: darkorange;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  font-family: poppins;
+  cursor: not-allowed;
+  text-decoration: none; 
+
+  strong{
+    color: #fff;
+    font-weight: bold;
   }
 `;

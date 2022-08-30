@@ -13,14 +13,18 @@ import { preOrderedDetail } from "../Global/GlobalState";
 
 const Checkout = () => {
   const getCart = useSelector((state) => state.cart);
+  const getQty = useSelector((state) => state.qty);
   const totalPrice = useSelector((state) => state.totalPrices);
+
   const [cartItem] = useState(getCart);
+  const [cumulativePrice] = useState(totalPrice);
+  const [totalQty] = useState(getQty);
   const navigate = useNavigate();
   const [nijaStates, setNijaStates] = useState([]);
   const dispatch = useDispatch();
 
   const handleForm = yup.object().shape({
-    email: yup.string().email().required("EMail is Required"),
+    email: yup.string().email().required("Email is Required"),
     username: yup.string().required("username is Required"),
     state: yup.string().required("state is Required"),
     LGA: yup.string().required("LGA is Required"),
@@ -41,7 +45,7 @@ const Checkout = () => {
     const { email, username, state, LGA, phone, address, age } = value;
 
     const mainURL = "http://localhost:2221";
-    const liveURL = "https://sktriumph-app.vercel.app";
+    const liveURL = "https://skintriumph-server.herokuapp.com";
     const URL = `${liveURL}/api/shipping/newshipping`;
 
     await axios
@@ -54,6 +58,8 @@ const Checkout = () => {
         address,
         age,
         orders: cartItem,
+        totalPrice: cumulativePrice,
+        totalQantity: totalQty,
       })
       .then((res) => {
         console.log(res.data.data);

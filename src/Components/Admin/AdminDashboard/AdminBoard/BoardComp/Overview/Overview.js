@@ -1,5 +1,12 @@
 import React from "react";
 import styled from "styled-components";
+import { BsFillDisplayFill } from "react-icons/bs";
+import { FaChalkboardTeacher } from "react-icons/fa";
+import { VscSymbolClass } from "react-icons/vsc";
+import { IoIosPeople } from "react-icons/io";
+import DoughnutChart from "./DoughnutChart";
+import PieChart from "./PieChart";
+import RecentCostomers from "./RecentCostomers";
 
 const Overview = () => {
   return (
@@ -7,43 +14,49 @@ const Overview = () => {
       <Wrapper>
         <h5>Overview</h5>
         <TopContainer>
-          <InnerTop1>
-            <SBox1>
-              <SalesBox>
-                <SalesIcon>Icon</SalesIcon>
-                <SalesNumText>
-                  <Num>1,995</Num>
-                  <Text>Total Sales</Text>
-                </SalesNumText>
-              </SalesBox>
-              <SalesBox>
-                <SalesIcon>Icon</SalesIcon>
-                <SalesNumText>
-                  <Num>1,995</Num>
-                  <Text>Total Sales</Text>
-                </SalesNumText>
-              </SalesBox>
-            </SBox1>
-            <SBox2>
-              <SalesBox>
-                <SalesIcon>Icon</SalesIcon>
-                <SalesNumText>
-                  <Num>1,995</Num>
-                  <Text>Total Sales</Text>
-                </SalesNumText>
-              </SalesBox>
-              <SalesBox>
-                <SalesIcon>Icon</SalesIcon>
-                <SalesNumText>
-                  <Num>1,995</Num>
-                  <Text>Total Sales</Text>
-                </SalesNumText>
-              </SalesBox>
-            </SBox2>
-          </InnerTop1>
-          <InnerTop2>TopTwo</InnerTop2>
+          <RowTwo>
+            <FirstBox>
+              <InnerBox>
+                <IconHold bgi="#F3E5F5">
+                  <FaChalkboardTeacher color="#8E24AA" />
+                </IconHold>
+                <span> 2040 </span>
+                <small>Total Sales</small>
+              </InnerBox>
+              <InnerBox>
+                <IconHold bgi="#E1F1FF">
+                  <BsFillDisplayFill color="#3F7AFC" />
+                </IconHold>
+                <span> Kunle </span>
+                <small>Incomplect Orders</small>
+              </InnerBox>
+              <InnerBox>
+                <IconHold bgi="#FFF2D8">
+                  <VscSymbolClass color="#FFA070" />
+                </IconHold>
+                <span> 500</span>
+                <small>Totla Income</small>
+              </InnerBox>
+              <InnerBox>
+                <IconHold bgi="#FFEAEA">
+                  <IoIosPeople color="#FF0000" />
+                </IconHold>
+                <span> 200 </span>
+                <small>Total Orders</small>
+              </InnerBox>
+            </FirstBox>
+            <SecondBox>
+              <DoughnutChart />
+            </SecondBox>
+            <ThirdBox>
+              <PieChart />
+            </ThirdBox>
+          </RowTwo>
         </TopContainer>
-        <ButtomContainer>ButtomContainer</ButtomContainer>
+        <ButtomContainer>
+          <h5>Recent Orders</h5>
+          <RecentCostomers />
+        </ButtomContainer>
       </Wrapper>
     </Container>
   );
@@ -77,26 +90,105 @@ const Wrapper = styled.div`
   @media (max-width: 1150px) {
     width: 95%;
   }
+  h5 {
+    font-size: 16px;
+    font-weight: bold;
+    font-family: poppins;
+    margin-top: 10px;
+  }
 `;
 
 const TopContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 `;
-const InnerTop1 = styled.div`
+
+const ButtomContainer = styled.div`
+  width: 100%;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 20px;
+
+  h5 {
+    font-size: 16px;
+    font-weight: bold;
+    font-family: poppins;
+  }
 `;
-const SBox1 = styled.div``;
-const SBox2 = styled.div``;
-const SalesBox = styled.div`
-  height: 100px;
-  width: 260px;
-  background-color: darkcyan;
-  margin: 10px;
+
+const RowTwo = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 `;
-const SalesIcon = styled.div``;
-const SalesNumText = styled.div``;
-const Num = styled.div``;
-const Text = styled.div``;
-const InnerTop2 = styled.div``;
-const ButtomContainer = styled.div``;
+const FirstBox = styled.div`
+  /* height: 350px; */
+  width: 360px;
+  /* background-color: #fff; */
+  margin: 10px 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  /* border-radius: 6px; */
+
+  @media (max-width: 700px) {
+    width: 90%;
+    justify-content: center;
+  }
+`;
+const SecondBox = styled.div`
+  width: 350px;
+  height: 350px;
+  background-color: #fff;
+  margin: 10px 10px;
+
+  @media (max-width: 500px) {
+    width: 90%;
+  }
+`;
+const ThirdBox = styled.div`
+  width: 350px;
+  height: 350px;
+  background-color: #fff;
+  margin: 10px 10px;
+  @media (max-width: 500px) {
+    width: 90%;
+  }
+`;
+
+const InnerBox = styled.div`
+  height: 160px;
+  width: 173px;
+  background-color: #fff;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  span {
+    font-weight: 700;
+  }
+  small {
+    font-size: 11px;
+  }
+
+  @media (max-width: 500px) {
+    width: 90%;
+    margin: 10px;
+  }
+`;
+
+const IconHold = styled.div`
+  margin: 0 10px;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: ${({ bgi }) => bgi};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  margin-bottom: 10px;
+`;

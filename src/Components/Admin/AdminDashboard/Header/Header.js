@@ -4,14 +4,17 @@ import { IoLogoBitbucket, IoNotifications, IoSearch } from "react-icons/io5";
 import { SiMinutemailer } from "react-icons/si";
 import { HiMenuAlt1 } from "react-icons/hi";
 import { GlobalState } from "../../../ContexGlobal/Global";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const { mobHandler } = useContext(GlobalState);
+  const adminPropt = useSelector((state) => state.currentAdmin);
+  console.log(adminPropt);
   return (
     <Container>
       <Wrapper>
         <Logo>
-          <IoLogoBitbucket />
+          <img src="/logo.png" alt="Logo" />
         </Logo>
         <Navs>
           <SearchBar>
@@ -25,12 +28,12 @@ const Header = () => {
             <IoNotifications />
           </Icons>
           <Avatar>
-            <img src="/ava.png" alt="" />
+            <img src={adminPropt.avatarImg} alt="" />
           </Avatar>
         </Navs>
         <MobNav>
           <AvatarMob>
-            <img src="/ava.png" alt="" />
+            <img src={adminPropt.avatarImg} alt="" />
           </AvatarMob>
           <Bugger onClick={mobHandler}>
             <HiMenuAlt1 />
@@ -64,7 +67,13 @@ const Wrapper = styled.div`
   }
 `;
 const Logo = styled.div`
-  font-size: 25px;
+  height: 100%;
+  width: 40px;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
 `;
 const Navs = styled.div`
   display: flex;

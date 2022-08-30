@@ -1,38 +1,39 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 const Home2 = () => {
   const newData = [
     {
       id: 1,
-      product: "Hibiscus Bathing Soap Skin Enhancer",
-      price: 7800.0,
+      product: "Cocoa Hand Made Soap",
+      price: 2600,
       detail:
-        "Skintriumph Hibiscus soap fight germs and bacterial from skin surface, also fight germs that cause body odor and eczema",
+        "This product is made from pure cocoa pod having blended with Shea butter, pure coconut oil, alpha arbutin, mulberry",
       image: "./Images/eee.jpg",
     },
     {
       id: 2,
-      product: "Hibiscus Bathing Soap Skin Enhancer",
-      price: 7800.0,
+      product: "Strech Mark Creme",
+      price: 5500,
       detail:
-        "Skintriumph Hibiscus soap fight germs and bacterial from skin surface, also fight germs that cause body odor and eczema",
+        "Stretch marks is the cause of skin breakage in many individuals and a lot of product claim to treat this condition",
       image: "./Images/new1.jpg",
     },
     {
       id: 3,
-      product: "Hibiscus Bathing Soap Skin Enhancer",
-      price: 7800.0,
+      product: "Avocado Moisturising Soap",
+      price: 2800,
       detail:
-        "Skintriumph Hibiscus soap fight germs and bacterial from skin surface, also fight germs that cause body odor and eczema",
+        "The secret to a beautify skin is obtained by regular use of avocados soap because natural beauty starts with a clean",
       image: "./Images/bbb.jpg",
     },
     {
       id: 4,
-      product: "Hibiscus Bathing Soap Skin Enhancer",
-      price: 7800.0,
+      product: "Face Corrector",
+      price: 2500,
       detail:
-        "Skintriumph Hibiscus soap fight germs and bacterial from skin surface, also fight germs that cause body odor and eczema",
+        "Skintriumph face corrector is made with simple organic ingredients that have been tested and trusted to remove facial",
       image: "./Images/new4.jpg",
     },
   ];
@@ -48,20 +49,19 @@ const Home2 = () => {
                 <div>New</div>
               </ImgDiv>
               <OtherWatch>
-                <ProductTitle>Hibiscus Bathing Soap Skin Enhancer</ProductTitle>
+                <ProductTitle> {props.product} </ProductTitle>
                 <Butons>
-                  <CartBut>Add to Cart</CartBut>
-                  <Price>N7,800.00</Price>
+                  <CartBut to="/products">View Product </CartBut>
+                  <Price> {props.price} .00</Price>
                 </Butons>
-                <ShortDescrib>
-                  Skintriumph Hibiscus soap fight germs and bacterial from skin
-                  surface, also fight germs that cause body odor and eczema.
-                </ShortDescrib>
+                <ShortDescrib>{props.detail}</ShortDescrib>
               </OtherWatch>
             </ProductCard>
           ))}
         </NewProducts>
-        <Button>See More</Button>
+        <NavLink to="/products">
+          <Button>See More</Button>
+        </NavLink>
       </Wrapper>
     </Container>
   );
@@ -178,7 +178,8 @@ const Butons = styled.div`
   justify-content: space-between;
   margin-bottom: 10px;
 `;
-const CartBut = styled.button`
+const CartBut = styled(NavLink)`
+  text-decoration: none;
   padding: 5px 15px;
   background-color: #000;
   color: #fff;

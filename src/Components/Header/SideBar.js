@@ -99,6 +99,7 @@ const Container = styled.div`
   font-weight: 600;
   position: fixed;
   margin-top: 70px;
+  z-index: 10;
 `;
 const Wrapper = styled.div``;
 const Navs = styled(NavLink)`

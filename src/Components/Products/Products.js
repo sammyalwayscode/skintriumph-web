@@ -15,7 +15,7 @@ const Products = () => {
 
   const getProducts = async () => {
     const mainURL = "http://localhost:2221";
-    const liveURL = "https://sktriumph-app.vercel.app";
+    const liveURL = "https://skintriumph-server.herokuapp.com";
     const URL = `${liveURL}/api/product/`;
 
     await axios
@@ -30,7 +30,7 @@ const Products = () => {
           text: `Please Check and Fix this ERROR`,
           icon: "error",
           showConfirmButton: false,
-          timer: 3500,
+          confirm: true,
         });
       });
   };
@@ -48,10 +48,10 @@ const Products = () => {
         </ProductHero>
 
         <ProdCategory>
-          <Category>
+          {/* <Category>
             <p>Product Category</p>
             <input placeholder="Select a Category" />
-          </Category>
+          </Category> */}
           <Prodct>All Products</Prodct>
         </ProdCategory>
         <Wrapper>
@@ -256,8 +256,7 @@ const Butons = styled.div`
   margin-bottom: 10px;
 `;
 const CartBut = styled.button`
-  height: 30px;
-  width: 100px;
+  padding: 5px 15px;
   background-color: #000;
   color: #fff;
   font-size: 13px;
@@ -269,7 +268,6 @@ const CartBut = styled.button`
   outline: none;
   border: none;
   transition: all 350ms;
-  font-family: poppins;
 
   :hover {
     transform: scale(0.94);

@@ -30,7 +30,7 @@ const NewStoreModal = () => {
     const { office, phoneNo, address, email, hours } = value;
 
     const mainURL = "http://localhost:2221";
-    const liveURL = "https://sktriumph-app.vercel.app";
+    const liveURL = "https://skintriumph-server.herokuapp.com";
     const URL = `${liveURL}/api/stocklist/newstore`;
 
     await axios
@@ -40,7 +40,7 @@ const NewStoreModal = () => {
         Swal.fire({
           position: "center",
           icon: "success",
-          title: "Product Uploaded",
+          title: "Stocklist Uploaded",
           showConfirmButton: false,
           timer: 2500,
         }).then(() => {
