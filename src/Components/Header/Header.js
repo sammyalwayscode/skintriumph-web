@@ -26,9 +26,11 @@ const Header = () => {
     <>
       <Container>
         <Wrapper>
-          <Logo>
-            <img src="/logog.png" alt="Logo" />
-          </Logo>
+          <NavLink to="/">
+            <Logo>
+              <img src="/logo.png" alt="Logo" />
+            </Logo>
+          </NavLink>
 
           <Navigations>
             <Navs to="/">

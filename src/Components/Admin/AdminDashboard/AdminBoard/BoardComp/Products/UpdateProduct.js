@@ -19,7 +19,7 @@ const UpdateProduct = () => {
 
   const prevProductGet = async () => {
     const mainURL = "http://localhost:2221";
-    const liveURL = "https://sktriumph-app.vercel.app";
+    const liveURL = "https://skintriumph-server.herokuapp.com";
     const URL = `${liveURL}/api/product/${id}`;
 
     await axios.get(URL).then((res) => {
@@ -65,7 +65,8 @@ const UpdateProduct = () => {
       productDescription3,
     } = value;
     const mainURL = "http://localhost:2221";
-    const URL = `${mainURL}/api/product/update/${id}`;
+    const liveURL = "https://skintriumph-server.herokuapp.com";
+    const URL = `${liveURL}/api/product/update/${id}`;
     console.log(value);
 
     const formData = new FormData();
@@ -191,6 +192,7 @@ const UpdateProduct = () => {
             <InputCtrl>
               <span>Full Details (Paragraph2)</span>
               <textarea
+                defaultValue={prevData.productDescription2}
                 placeholder="All you want Users to Know about the Product"
                 {...register("productDescription2")}
               />
@@ -199,6 +201,7 @@ const UpdateProduct = () => {
             <InputCtrl>
               <span>Full Details (Paragraph3)</span>
               <textarea
+                defaultValue={prevData.productDescription3}
                 placeholder="All you want Users to Know about the Product"
                 {...register("productDescription3")}
               />

@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { BsFacebook, BsInstagram, BsTwitter } from "react-icons/bs";
 import { SiGmail } from "react-icons/si";
+import { NavLink } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -14,17 +15,21 @@ const Footer = () => {
             products
           </FootMotto>
           <FootSocial>
-            <div>
-              {" "}
-              <BsFacebook />
-            </div>
+            <a href="https://www.facebook.com/skintriumphs.skintriumphs">
+              <div>
+                {" "}
+                <BsFacebook />
+              </div>
+            </a>
             <div>
               {" "}
               <BsInstagram />
             </div>
-            <div>
-              <BsTwitter />
-            </div>
+            <a href="https://twitter.com/skintriumph?s=20&t=EpTVYK28pTBDeBRUHmJNvA">
+              <div>
+                <BsTwitter />
+              </div>
+            </a>
             <div>
               <SiGmail />
             </div>
@@ -33,37 +38,93 @@ const Footer = () => {
         <FootTwo>
           <FootTwoHold>
             <FootTitle>Home</FootTitle>
-            <FootNav>Saas</FootNav>
-            <FootNav>Event</FootNav>
-            <FootNav>Mobile App</FootNav>
-            <FootNav>Desktop App</FootNav>
-            <FootNav>Startup</FootNav>
+            <NavLink
+              style={{
+                textDecoration: "none",
+              }}
+              to="/products"
+            >
+              <FootNav>Product</FootNav>
+            </NavLink>
+            <NavLink
+              style={{
+                textDecoration: "none",
+              }}
+              to="/cart"
+            >
+              <FootNav>Cart</FootNav>
+            </NavLink>
+            {/* <FootNav>Mobile App</FootNav> */}
+            {/* <FootNav>Desktop App</FootNav> */}
+            {/* <FootNav>Startup</FootNav> */}
           </FootTwoHold>
           <FootTwoHold>
             <FootTitle>About Us</FootTitle>
-            <FootNav>Pricing</FootNav>
-            <FootNav>Career</FootNav>
-            <FootNav>Contact</FootNav>
-            <FootNav>Blog</FootNav>
+            <NavLink
+              style={{
+                textDecoration: "none",
+              }}
+              to="/products"
+            >
+              <FootNav>Pricing</FootNav>
+            </NavLink>
+            {/* <FootNav>Career</FootNav> */}
+            <NavLink
+              style={{
+                textDecoration: "none",
+              }}
+              to="/contact"
+            >
+              <FootNav>Contact</FootNav>
+            </NavLink>
+            <NavLink
+              style={{
+                textDecoration: "none",
+              }}
+              to="/blog"
+            >
+              <FootNav>Blog</FootNav>
+            </NavLink>
           </FootTwoHold>
           <FootTwoHold>
             <FootTitle>Account</FootTitle>
             <FootNav>Sign Up</FootNav>
-            <FootNav>Sign In</FootNav>
-            <FootNav>Forgot Password</FootNav>
+            <NavLink
+              style={{
+                textDecoration: "none",
+              }}
+              to="/admin/signin"
+            >
+              <FootNav>Sign In</FootNav>
+            </NavLink>
+            {/* <FootNav>Forgot Password</FootNav> */}
           </FootTwoHold>
           <FootTwoHold>
             <FootTitle>Get Help</FootTitle>
-            <FootNav>Developers Help</FootNav>
-            <FootNav>Docs</FootNav>
-            <FootNav>Free Training</FootNav>
-            <FootNav>Contact Sales</FootNav>
+            <NavLink
+              style={{
+                textDecoration: "none",
+              }}
+              to="/contact"
+            >
+              <FootNav>Contact</FootNav>
+            </NavLink>
+            {/* <FootNav>Docs</FootNav> */}
+            <FootNav>Skill Aquisation</FootNav>
+            <NavLink
+              style={{
+                textDecoration: "none",
+              }}
+              to="/contact"
+            >
+              <FootNav>Contact Sales</FootNav>
+            </NavLink>
           </FootTwoHold>
         </FootTwo>
       </Wrapper>
-      <Developer>
+      {/* <Developer>
         @skintriumph 2021 - concept created by Olorunda Samuel
-      </Developer>
+      </Developer> */}
     </Container>
   );
 };

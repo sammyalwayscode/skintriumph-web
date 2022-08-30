@@ -7,8 +7,8 @@ const Home6 = () => {
       <Wrapper>
         <PreTitle>Join Our</PreTitle>
         <Title>Inclusive Beauty Movement</Title>
-        <Img1 src="/Images/btu1.webp" />
-        <Img1 src="/Images/btu2.jpg" />
+        <Img1 src="/Images/beutymov1.jpg" />
+        <Img1 src="/Images/beutymov2.jpg" />
       </Wrapper>
     </Container>
   );

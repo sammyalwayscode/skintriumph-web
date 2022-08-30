@@ -1,19 +1,42 @@
 import axios from "axios";
 import moment from "moment";
 import React from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import formatter from "number-to-currency";
+import Swal from "sweetalert2";
 
 const OrderDetail = () => {
-  const [getOrder, setGetOrder] = React.useState([]);
+  const [getOrder, setGetOrder] = React.useState();
+  const [productOrdered, setProductOrdered] = React.useState();
+  const [orderEmail, setOrderEmail] = React.useState("");
+  const [orderOTP, setOrderOTP] = React.useState(String);
+  const [orderDate, setOrderDate] = React.useState(Date);
+  const [orderStatus, setOrderStatus] = React.useState(Boolean);
+  const { id } = useParams();
+
+  const updateDelivery = async () => {
+    const mainURL = "http://localhost:2221";
+    const liveURL = "https://skintriumph-server.herokuapp.com";
+    const URL = `${liveURL}/api/order/delivered/${id}`;
+    axios.patch(URL);
+  };
 
   const fecthOrder = async () => {
     const mainURL = "http://localhost:2221";
-    const liveURL = "https://sktriumph-app.vercel.app";
-    const URL = `${liveURL}/api/order/`;
+    const liveURL = "https://skintriumph-server.herokuapp.com";
+    const URL = `${liveURL}/api/order/${id}`;
 
     await axios.get(URL).then((res) => {
-      console.log(res.data.data);
-      setGetOrder(res.data.data);
+      console.log(res.data.data.orderDetail[0].orders);
+      setProductOrdered(res.data.data.orderDetail[0].orders);
+      setGetOrder(res.data.data.orderDetail);
+      console.log(res.data.data.orderDetail);
+      console.log(res.data.data.email);
+      setOrderEmail(res.data.data.email);
+      setOrderOTP(res.data.data.orderOTP);
+      setOrderDate(res.data.data.createdAt);
+      setOrderStatus(res.data.data.delivered);
     });
   };
 
@@ -30,75 +53,133 @@ const OrderDetail = () => {
               <DetailContainerHold key={props._id}>
                 <DetailImageContainer>
                   {" "}
-                  {props.orderDetail.map((props) =>
-                    props.username.charAt()
-                  )}{" "}
+                  {props.username.charAt()}
                 </DetailImageContainer>
                 <DetailTextContainer>
-                  <UserName>
-                    {" "}
-                    {props.orderDetail.map((props) => props.username)}{" "}
-                  </UserName>
+                  <UserName> {props.username}</UserName>
 
                   <TeacherCredentialsHold>
                     <TitleContent>
                       <Title>Name:</Title>
-                      <Content>
-                        {props.orderDetail.map((props) => props.username)}
-                      </Content>
+                      <Content>{props.username}</Content>
                     </TitleContent>
                     <TitleContent>
                       <Title>Email:</Title>
-                      <Content> {props.email} </Content>
+                      <Content>{orderEmail}</Content>
                     </TitleContent>
                     <TitleContent>
                       <Title>Age:</Title>
-                      <Content>
-                        {" "}
-                        {props.orderDetail.map((props) => props.age)}{" "}
-                      </Content>
+                      <Content>{props.age}</Content>
                     </TitleContent>
                     <TitleContent>
                       <Title>State:</Title>
-                      <Content>
-                        {" "}
-                        {props.orderDetail.map((props) => props.state)}{" "}
-                      </Content>
+                      <Content>{props.state}</Content>
                     </TitleContent>
                     <TitleContent>
                       <Title>L.G.A:</Title>
-                      <Content>
-                        {" "}
-                        {props.orderDetail.map((props) => props.LGA)}
-                      </Content>
+                      <Content>{props.LGA}</Content>
                     </TitleContent>
                     <TitleContent>
                       <Title>Street Address:</Title>
-                      <Content>
-                        {" "}
-                        {props.orderDetail.map((props) => props.address)}{" "}
-                      </Content>
+                      <Content>{props.address}</Content>
                     </TitleContent>
                     <TitleContent>
                       <Title>Phone No:</Title>
-                      <b> {props.orderDetail.map((props) => props.phone)}</b>
+                      {props.phone}
                     </TitleContent>
                     <TitleContent>
                       <Title>Date Of Order:</Title>
                       <Content>
                         {" "}
-                        <b>{moment(props.createdAt).format("LLLL")}</b>{" "}
+                        <b>{moment(orderDate).format("LLLL")}</b>{" "}
                       </Content>
                     </TitleContent>
                     <TitleContent>
                       <Title>OrderOTP:</Title>
-                      <Content> {props.orderOTP}</Content>
+                      <Content> {orderOTP}</Content>
                     </TitleContent>
                     <TitleContent>
                       <Title>Item Ordered:</Title>
                       <Content>
-                        {props.orderDetail.map((props) =>
-                          props.orders.map((orderprops) => orderprops.price)
+                        {productOrdered?.map((props) => (
+                          <ItemHold>
+                            <OrderImg>
+                              {" "}
+                              <img
+                                src={props.avatar}
+                                alt={props.productName}
+                              />{" "}
+                            </OrderImg>
+                            <OrderMain>
+                              {" "}
+                              <OrderTitle>Product Name:</OrderTitle>{" "}
+                              {props.productName}
+                            </OrderMain>
+                            <OrderMain>
+                              <OrderTitle>Price Per Product:</OrderTitle>
+                              <span>&#8358;</span>
+                              {formatter(props.price)}
+                            </OrderMain>
+                            <OrderMain>
+                              <OrderTitle>Amount Bought:</OrderTitle>
+                              {props.qty}
+                            </OrderMain>
+                            <OrderMain>
+                              <OrderTitle>Category:</OrderTitle>
+                              {props.category}
+                            </OrderMain>
+                            <OrderMain>
+                              <OrderTitle>Product Total:</OrderTitle>
+                              <span>&#8358;</span>
+                              {formatter(props.price * props.qty)}
+                            </OrderMain>
+                            <hr />
+                          </ItemHold>
+                        ))}
+                        {/* {getOrder.orderDetail.map((props) =>
+                       props.orders.map((orderprops) => orderprops.price)
+                     )} */}
+                      </Content>
+                    </TitleContent>
+                    <TitleContent>
+                      <Title>Total Item Ordered:</Title>
+                      <Content>{props.username}</Content>
+                    </TitleContent>
+                    <TitleContent>
+                      <Title>Total Prices:</Title>
+                      <Content>{props.username}</Content>
+                    </TitleContent>
+                    <TitleContent>
+                      <Title>Delivery Status:</Title>
+                      <Content>
+                        {orderStatus ? (
+                          <Button1>Delivered</Button1>
+                        ) : (
+                          <Button2
+                            onClick={() => {
+                              Swal.fire({
+                                title: "Are you sure?",
+                                text: "You won't be able to revert this!",
+                                icon: "info",
+                                showCancelButton: true,
+                                confirmButtonColor: "#3085d6",
+                                cancelButtonColor: "#d33",
+                                confirmButtonText: "Yes, Update Status!",
+                              }).then((result) => {
+                                if (result.isConfirmed) {
+                                  updateDelivery();
+                                  Swal.fire(
+                                    "Delivered!",
+                                    "Your order has been Updated.",
+                                    "success"
+                                  );
+                                  window.location.reload();
+                                }
+                              });
+                            }}
+                          >
+                            Not Delivered
+                          </Button2>
                         )}
                       </Content>
                     </TitleContent>
@@ -114,6 +195,28 @@ const OrderDetail = () => {
 };
 
 export default OrderDetail;
+
+const ItemHold = styled.div``;
+const OrderImg = styled.div`
+  height: 60px;
+  width: 60px;
+  background-color: lightgray;
+  border-radius: 6px;
+
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
+`;
+const OrderTitle = styled.div`
+  margin-right: 10px;
+  font-weight: bold;
+`;
+const OrderMain = styled.div`
+  display: flex;
+  margin-bottom: 5px;
+`;
 
 const Container = styled.div`
   min-height: calc(100vh - 50px);
@@ -219,3 +322,37 @@ const Title = styled.div`
   width: 130px;
 `;
 const Content = styled.div``;
+
+const Button1 = styled.div`
+  padding: 5px 70px;
+  background-color: green;
+  color: #fff;
+  font-size: 13px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  border-radius: 3px;
+  outline: none;
+  border: none;
+  transition: all 350ms;
+  font-family: poppins;
+  cursor: not-allowed;
+`;
+
+const Button2 = styled.div`
+  padding: 5px 70px;
+  background-color: red;
+  cursor: pointer;
+  color: #fff;
+  font-size: 13px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  border-radius: 3px;
+  outline: none;
+  border: none;
+  transition: all 350ms;
+  font-family: poppins;
+`;

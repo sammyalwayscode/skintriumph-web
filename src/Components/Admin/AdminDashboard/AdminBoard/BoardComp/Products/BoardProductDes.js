@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Swal from "sweetalert2";
+import formatter from "number-to-currency";
 
 const BoardProductDes = () => {
   const [getProductDetails, setGetProductDetails] = useState({});
@@ -11,7 +12,7 @@ const BoardProductDes = () => {
 
   const getDetailProduct = async () => {
     const mainURL = "http://localhost:2221";
-    const liveURL = "https://sktriumph-app.vercel.app/";
+    const liveURL = "https://skintriumph-server.herokuapp.com";
     const URL = `${liveURL}/api/product/${id}`;
 
     await axios
@@ -33,7 +34,7 @@ const BoardProductDes = () => {
 
   const deleteProduct = async () => {
     const mainURL = "http://localhost:2221";
-    const liveURL = "https://sktriumph-app.vercel.app";
+    const liveURL = "https://skintriumph-server.herokuapp.com";
     const URL = `${liveURL}/api/product/remove/${id}`;
 
     await axios.delete(URL);
@@ -55,7 +56,7 @@ const BoardProductDes = () => {
             {" "}
             Price:{" "}
             <strong>
-              <span>&#8358;</span> {getProductDetails.price}
+              <span>&#8358;</span> {formatter(getProductDetails.price)}
             </strong>{" "}
           </Price>
           <Content>

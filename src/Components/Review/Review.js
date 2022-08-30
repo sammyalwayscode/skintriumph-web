@@ -25,7 +25,7 @@ const Review = () => {
   const onSuccess = (reference) => {
     console.log(reference);
     const mainURL = "http://localhost:2221";
-    const liveURL = "https://sktriumph-app.vercel.app";
+    const liveURL = "https://skintriumph-server.herokuapp.com";
     const URL = `${liveURL}/api/order/newshipping/order`;
     axios
       .post(URL, { orderDetail: getPreOder, email: getPreOder.email })
@@ -64,7 +64,7 @@ const Review = () => {
 
   const uploadCODOrder = async () => {
     const mainURL = "http://localhost:2221";
-    const liveURL = "https://sktriumph-app.vercel.app";
+    const liveURL = "https://skintriumph-server.herokuapp.com";
     const URL = `${liveURL}/api/order/newshipping/order`;
     await axios
       .post(URL, { orderDetail: getPreOder, email: getPreOder.email })

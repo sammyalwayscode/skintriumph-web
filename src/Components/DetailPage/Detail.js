@@ -15,7 +15,7 @@ const Detail = () => {
 
   const getProducts = async () => {
     const mainURL = "http://localhost:2221";
-    const liveURL = "https://sktriumph-app.vercel.app";
+    const liveURL = "https://skintriumph-server.herokuapp.com";
     const URL = `${liveURL}/api/product/${id}`;
 
     await axios

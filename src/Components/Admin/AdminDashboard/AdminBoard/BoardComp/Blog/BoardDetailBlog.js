@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import moment from "moment";
-import { useNavigate, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
 
@@ -12,7 +12,7 @@ const BoardDetailBlog = () => {
 
   const getBlogDetail = async () => {
     const mainURL = "http://localhost:2221";
-    const liveURL = "https://sktriumph-app.vercel.app";
+    const liveURL = "https://skintriumph-server.herokuapp.com";
     const URL = `${liveURL}/api/blog/${id}`;
 
     await axios
@@ -35,6 +35,15 @@ const BoardDetailBlog = () => {
   useEffect(() => {
     getBlogDetail();
   }, []);
+
+  const deleteBlog = async () => {
+    const mainURL = "http://localhost:2221";
+    const liveURL = "https://skintriumph-server.herokuapp.com";
+    const URL = `${liveURL}/api/blog/delete/${id}`;
+
+    await axios.delete(URL);
+    navigate("/boardblogs");
+  };
 
   return (
     <Container>
@@ -60,8 +69,34 @@ const BoardDetailBlog = () => {
             </button>
           </MoreDetail>
           <ButtonHold>
-            <Button>Update Blog</Button>
-            <Button bg>Delete Blog</Button>
+            <NavLink to={`/boardblogs/updateblog/${blogTail._id}`}>
+              <Button>Update Blog</Button>
+            </NavLink>
+            <Button
+              onClick={() => {
+                Swal.fire({
+                  title: "Are you sure?",
+                  text: "You won't be able to revert this!",
+                  icon: "warning",
+                  showCancelButton: true,
+                  confirmButtonColor: "#3085d6",
+                  cancelButtonColor: "#d33",
+                  confirmButtonText: "Yes, delete it!",
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    deleteBlog();
+                    Swal.fire(
+                      "Deleted!",
+                      "Your file has been deleted.",
+                      "success"
+                    );
+                  }
+                });
+              }}
+              bg
+            >
+              Delete Blog
+            </Button>
           </ButtonHold>
         </BlogDetail>
       </Wrapper>

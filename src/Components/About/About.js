@@ -15,7 +15,7 @@ const About = () => {
         <HeroAbout />
         <About1 />
         <About2 />
-        <About3 />
+        {/* <About3 /> */}
       </Container>
       <Footer />
     </>
