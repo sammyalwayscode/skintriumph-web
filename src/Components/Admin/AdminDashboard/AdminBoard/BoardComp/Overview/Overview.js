@@ -7,8 +7,26 @@ import { IoIosPeople } from "react-icons/io";
 import DoughnutChart from "./DoughnutChart";
 import PieChart from "./PieChart";
 import RecentCostomers from "./RecentCostomers";
+import axios from "axios";
 
 const Overview = () => {
+  const [getOrder, setGetOrder] = React.useState([]);
+
+  const fecthOrder = async () => {
+    const mainURL = "http://localhost:2221";
+    const liveURL = "https://skintriumph-server.herokuapp.com";
+    const URL = `${liveURL}/api/order/`;
+
+    await axios.get(URL).then((res) => {
+      console.log(res.data.data);
+      setGetOrder(res.data.data);
+    });
+  };
+
+  React.useEffect(() => {
+    fecthOrder();
+  }, []);
+
   return (
     <Container>
       <Wrapper>
@@ -41,7 +59,7 @@ const Overview = () => {
                 <IconHold bgi="#FFEAEA">
                   <IoIosPeople color="#FF0000" />
                 </IconHold>
-                <span> 200 </span>
+                <span> {getOrder.length} </span>
                 <small>Total Orders</small>
               </InnerBox>
             </FirstBox>
