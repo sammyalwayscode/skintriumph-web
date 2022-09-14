@@ -19,7 +19,7 @@ const Review = () => {
     reference: new Date().getTime().toString(),
     email: `${getPreOder.email}`,
     amount: `${getTotalprice * 100}`,
-    publicKey: "pk_test_2bbcb1eb3e54d6c60a722e7b3eda839163c83bf0",
+    publicKey: "pk_live_724ab9d56515d592950afb41b7e26f192b952a17",
   };
 
   const onSuccess = (reference) => {
