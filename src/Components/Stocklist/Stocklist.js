@@ -46,10 +46,10 @@ const Stocklist = () => {
             <h2>Flagship Store</h2>
             <ContentHold>
               <div>Skin Triumph Stores - Olodi-Apapa</div>
-              <p>38 Ayebeng Street, Adenta Shopping Center, Adenta</p>
-              <p>Tel:+234 908 117 6026, +234 903 098 8589 </p>
-              <p>Email: info@afribeautycollective.com</p>
-              <p>Hours: Tuesday – Saturday 10am – 5:30 pm</p>
+              <p>No 2 Idewu Street Off Akere B/Stop Olodi-Aapap Lagos</p>
+              <p>Tel:0708 909 0095 </p>
+              <p>Email: skintriumph@gmail.com</p>
+              <p>Hours: Monday – Saturday 09am – 05:30 pm</p>
             </ContentHold>
           </MainStore>
 

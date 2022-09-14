@@ -21,7 +21,7 @@ const Contact = () => {
                 <Icon />
               </IconDiv>
               <AddressTitle>Email</AddressTitle>
-              <AdressContent>skintriump@gmail.com</AdressContent>
+              <AdressContent>skintriumph@gmail.com</AdressContent>
             </AddressCard>
             <AddressCard>
               <IconDiv>
@@ -29,7 +29,7 @@ const Contact = () => {
               </IconDiv>
               <AddressTitle>Contact Address</AddressTitle>
               <AdressContent>
-                No 1 Idewu Street Olodi-Aapap, Off New Road Lagos
+                No 2 Idewu Street Off Akere B/Stop Olodi-Aapap Lagos
               </AdressContent>
             </AddressCard>
             <AddressCard>
@@ -37,7 +37,7 @@ const Contact = () => {
                 <Icon2 />
               </IconDiv>
               <AddressTitle>Contact Number</AddressTitle>
-              <AdressContent>+234 708 909 0095</AdressContent>
+              <AdressContent>+234 806 096 9901</AdressContent>
             </AddressCard>
             <AddressCard>
               <IconDiv>
