@@ -9,6 +9,7 @@ import Home3 from "./Home3/Home3";
 import Home3b from "./Home3b/Home3b";
 import Home4 from "./Home4/Home4";
 import Home5 from "./Home5/Home5";
+import Home5b from "./Home5b/Home5b";
 import Home6 from "./Home6/Home6";
 
 const Home = () => {
@@ -21,6 +22,7 @@ const Home = () => {
         <Home2 />
         <Home3 />
         <Home4 />
+        <Home5b />
         <Home3b />
         <Home5 />
         <Home6 />
